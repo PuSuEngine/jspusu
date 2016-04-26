@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../dist/pusu.js"></script>
+</head>
+<body>
+<section>
+    <form>
+        <label for="message">Message:</label> <input type="text" id="message" />
+        <button type="submit">Send</button>
+        <div>Messages received <span id="counter">0</span>.</div>
+        <div class="messages"></div>
+    </form>
+</section>
+
+<script type="text/javascript">
+    var client = new PuSu("ws://127.0.0.1:55000");
+    var connect = client.connect();
+    connect.then(function() {
+        var authorize = client.authorize("foo");
+        authorize.then(function() {
+
+        });
+    });
+</script>
+</body>
+</html>

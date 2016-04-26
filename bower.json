@@ -1,0 +1,28 @@
+{
+  "name": "pusu",
+  "description": "PuSu Engine client",
+  "main": "dist/pusu.js",
+  "authors": [
+    "Janne Enberg aka. Lietu"
+  ],
+  "license": "MIT and new BSD",
+  "keywords": [
+    "javascript",
+    "typescript",
+    "pub-sub",
+    "messaging"
+  ],
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals"
+  ],
+  "homepage": "github.com/PuSuEngine/jspusu",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
