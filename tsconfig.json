@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": true,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "noExternalResolve": true,
+    "declarationFiles": true,
+    "target": "es5",
+    "module": "commonjs"
+  }
+}

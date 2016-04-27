@@ -8,22 +8,46 @@
 <body>
 <section>
     <form>
-        <label for="message">Message:</label> <input type="text" id="message" />
+        <label for="message">Message:</label> <input type="text" id="message"/>
         <button type="submit">Send</button>
-        <div>Messages received <span id="counter">0</span>.</div>
+        <div>Messages received <span class="counter">0</span>.</div>
         <div class="messages"></div>
     </form>
 </section>
 
 <script type="text/javascript">
-    var client = new PuSu("ws://127.0.0.1:55000");
-    var connect = client.connect();
-    connect.then(function() {
-        var authorize = client.authorize("foo");
-        authorize.then(function() {
+    var SERVER = "ws://127.0.0.1:55000";
+    var CHANNEL = "channel.1";
 
+    var count = 0;
+    var messages = document.querySelector(".messages");
+    var counter = document.querySelector(".counter");
+
+    var client = new PuSu(SERVER);
+    var connect = client.connect();
+    console.log(connect);
+    connect.promise.then(function () {
+        var authorize = client.authorize("foo");
+        console.log(authorize);
+        authorize.promise.then(function () {
+            var subscribe = client.subscribe(CHANNEL, function(msg) {
+                console.log(msg);
+                messages.innerText = msg + "\n" + messages.innerText;
+                count += 1;
+                counter.innerText = count;
+            });
         });
     });
+
+    var field = document.querySelector("#message");
+    function onSubmit(event) {
+        var content = field.value;
+        field.value = "";
+        client.publish(CHANNEL, content);
+        event.preventDefault();
+    }
+
+    document.querySelector("form").addEventListener("submit", onSubmit);
 </script>
 </body>
 </html>
