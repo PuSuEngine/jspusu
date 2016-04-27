@@ -4,7 +4,7 @@ import {create, DeferredInterface} from "./tsd";
  * Should we show debug messages? (for development purposes only)
  * @type {boolean}
  */
-const DEBUG = true;
+const DEBUG = false;
 
 if (DEBUG) {
     console.log("PuSu debug mode enabled.");

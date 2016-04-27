@@ -23,6 +23,8 @@
     var messages = document.querySelector(".messages");
     var counter = document.querySelector(".counter");
 
+    var messageContent = "";
+
     var client = new PuSu(SERVER);
     var connect = client.connect();
     console.log(connect);
@@ -31,10 +33,9 @@
         console.log(authorize);
         authorize.promise.then(function () {
             var subscribe = client.subscribe(CHANNEL, function(msg) {
-                console.log(msg);
-                messages.innerText = msg + "\n" + messages.innerText;
+                messageContent = msg + "\n" + messageContent;
+                messageContent = messageContent.substring(0, 2048);
                 count += 1;
-                counter.innerText = count;
             });
         });
     });
@@ -48,6 +49,11 @@
     }
 
     document.querySelector("form").addEventListener("submit", onSubmit);
+
+    setInterval(function() {
+        messages.innerText = messages.textContent = messageContent;
+        counter.innerText = counter.textContent = count;
+    }, 25);
 </script>
 </body>
 </html>
