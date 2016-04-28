@@ -284,9 +284,7 @@ if (typeof define !== "undefined" && define.amd) {
     if (DEBUG) {
         console.log("AMD loader detected");
     }
-    define(['exports'], function () {
-        return PuSu
-    });
+    define(['exports'], factory);
 } else if (typeof process !== "undefined" && process.browser) {
     if (DEBUG) {
         console.log("Looks like a browser");
