@@ -174,6 +174,8 @@ export class PuSu {
                 channel: channel
             }));
             this._wait(PuSu.TYPE_SUBSCRIBE_OK, deferred);
+        } else {
+            deferred.resolve();
         }
 
         return deferred;
@@ -230,7 +232,6 @@ export class PuSu {
                 done = true;
                 console.log(`Timeout exceeded waiting for ${eventType}`);
                 deferred.reject();
-
             }
         }, this.timeout);
     }
