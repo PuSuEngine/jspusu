@@ -9,9 +9,9 @@ More information on the server repository at [https://github.com/PuSuEngine/pusu
 To build this, you'll want to do the following:
 
 ```
-npm install -g grunt-cli
+npm install -g gulp
 npm install
-grunt
+gulp
 ```
 
 You'll get `dist/pusu.js` as the end result.
