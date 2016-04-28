@@ -208,8 +208,6 @@ export class PuSu {
         let _this = this;
         let waiter = function waiter(type: string) {
             if (eventType == type) {
-                console.log(`Got ${eventType}`);
-
                 if (!done) {
                     done = true;
                     deferred.resolve()
