@@ -1,4 +1,4 @@
-import {create, DeferredInterface} from "./tsd";
+import tsd = require("./tsd");
 
 /**
  * Should we show debug messages? (for development purposes only)
@@ -100,8 +100,8 @@ export class PuSu {
      * Connect to the PuSu network
      * @returns {DeferredInterface<void>}
      */
-    connect(): DeferredInterface<void> {
-        let deferred = create<void>();
+    connect(): tsd.DeferredInterface<void> {
+        let deferred = tsd.create<void>();
 
         if (this._socket) {
             this.disconnect();
@@ -138,8 +138,8 @@ export class PuSu {
      * @param authorization
      * @returns {DeferredInterface<void>}
      */
-    authorize(authorization: string): DeferredInterface<void> {
-        let deferred = create<void>();
+    authorize(authorization: string): tsd.DeferredInterface<void> {
+        let deferred = tsd.create<void>();
 
         this._socket.send(JSON.stringify({
             type: PuSu.TYPE_AUTHORIZE,
@@ -157,8 +157,8 @@ export class PuSu {
      * @param listener
      * @returns {DeferredInterface<void>}
      */
-    subscribe(channel: string, listener: Subscriber): DeferredInterface<void> {
-        let deferred = create<void>();
+    subscribe(channel: string, listener: Subscriber): tsd.DeferredInterface<void> {
+        let deferred = tsd.create<void>();
         let exists = true;
 
         if (!this._subscribers[channel]) {
@@ -198,7 +198,7 @@ export class PuSu {
      * @param deferred
      * @private
      */
-    private _wait(eventType: string, deferred: DeferredInterface<void>) {
+    private _wait(eventType: string, deferred: tsd.DeferredInterface<void>) {
         let done: boolean = false;
 
         if (DEBUG) {
