@@ -20,6 +20,10 @@ interface Subscriber {
     (msg: Message): void;
 }
 
+interface Waiter {
+    (type: string): void;
+}
+
 /**
  * PuSu Engine client
  */
@@ -80,9 +84,9 @@ export class PuSu {
     /**
      * When someone is waiting for events of a specific type
      */
-    private _waiter: (type: string) => void;
+    private _waiters: Waiter[] = [];
 
-    private _subscribers: {[channel: string]: Subscriber} = {};
+    private _subscribers: {[channel: string]: Subscriber[]} = {};
 
     /**
      * Create a new client instance
@@ -155,13 +159,22 @@ export class PuSu {
      */
     subscribe(channel: string, listener: Subscriber): DeferredInterface<void> {
         let deferred = create<void>();
+        let exists = true;
 
-        this._subscribers[channel] = listener;
-        this._socket.send(JSON.stringify({
-            type: PuSu.TYPE_SUBSCRIBE,
-            channel: channel
-        }));
-        this._wait(PuSu.TYPE_SUBSCRIBE_OK, deferred);
+        if (!this._subscribers[channel]) {
+            this._subscribers[channel] = [];
+            exists = false;
+        }
+
+        this._subscribers[channel].push(listener);
+
+        if (!exists) {
+            this._socket.send(JSON.stringify({
+                type: PuSu.TYPE_SUBSCRIBE,
+                channel: channel
+            }));
+            this._wait(PuSu.TYPE_SUBSCRIBE_OK, deferred);
+        }
 
         return deferred;
     }
@@ -186,24 +199,40 @@ export class PuSu {
      * @private
      */
     private _wait(eventType: string, deferred: DeferredInterface<void>) {
-        let ok = false;
+        let done: boolean = false;
 
         if (DEBUG) {
             console.log(`Waiting for ${eventType}`);
         }
 
-        this._waiter = function (type: string) {
+        let _this = this;
+        let waiter = function waiter(type: string) {
             if (eventType == type) {
                 console.log(`Got ${eventType}`);
-                ok = true;
-                deferred.resolve()
+
+                if (!done) {
+                    done = true;
+                    deferred.resolve()
+                }
+
+                _this._waiters.splice(_this._waiters.indexOf(waiter), 1);
             }
         };
 
+        this._waiters.push(waiter);
+
         setTimeout(function () {
-            if (!ok) {
+            let pos = _this._waiters.indexOf(waiter);
+
+            if (pos !== -1) {
+                _this._waiters.splice(pos, 1);
+            }
+
+            if (!done) {
+                done = true;
                 console.log(`Timeout exceeded waiting for ${eventType}`);
                 deferred.reject();
+
             }
         }, this.timeout);
     }
@@ -215,7 +244,9 @@ export class PuSu {
      */
     private _onReceiveMessage(message: Message) {
         if (this._subscribers[message.channel]) {
-            this._subscribers[message.channel](message.content);
+            this._subscribers[message.channel].forEach(function (f) {
+                f(message.content);
+            });
         }
     }
 
@@ -238,9 +269,11 @@ export class PuSu {
      */
     private _onmessage(event: MessageEvent) {
         let msg = JSON.parse(event.data);
-        if (this._waiter) {
-            this._waiter(msg.type);
-        }
+
+        this._waiters.forEach(function (f) {
+            f(msg.type);
+        });
+
         if (msg.type === PuSu.TYPE_PUBLISH) {
             this._onReceiveMessage(msg);
         }

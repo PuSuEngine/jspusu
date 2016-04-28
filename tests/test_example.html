@@ -37,6 +37,10 @@
                 messageContent = messageContent.substring(0, 2048);
                 count += 1;
             });
+            var subscribe = client.subscribe(CHANNEL, function(msg) {
+                messageContent = "2. " + msg + "\n" + messageContent;
+                messageContent = messageContent.substring(0, 2048);
+            });
         });
     });
 
