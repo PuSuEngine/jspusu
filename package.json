@@ -4,7 +4,7 @@
   "description": "PuSu Engine client",
   "main": "dist/pusu.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preinstall": "lockdown"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
     "vinyl-source-stream": "<=1.1.0"
   },
   "author": "Janne Enberg aka. Lietu",
-  "license": "MIT and new BSD"
+  "license": "MIT and new BSD",
+  "dependencies": {
+    "lockdown": "0.0.6"
+  }
 }
