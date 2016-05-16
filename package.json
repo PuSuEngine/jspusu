@@ -4,6 +4,7 @@
   "description": "PuSu Engine client",
   "main": "dist/pusu.js",
   "scripts": {
+    "relock": "lockdown-relock",
     "preinstall": "lockdown"
   },
   "repository": {
@@ -19,6 +20,7 @@
   "devDependencies": {
     "browserify": "<=13.0.1",
     "gulp": "<=3.9.1",
+    "gulp-uglify": "<=1.5.3",
     "tsify": "<=0.15.3",
     "vinyl-source-stream": "<=1.1.0"
   },

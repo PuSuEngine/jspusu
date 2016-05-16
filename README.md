@@ -39,7 +39,7 @@ You'll get `dist/pusu.js` as the end result.
 The project is using [npm-lockdown](https://github.com/mozilla/npm-lockdown) to try and avoid some issues with NPM.
 
 Basically if you update/add dependencies you should
-run `node_modules/.bin/lockdown-relock` and
+run `npm run relock` and
 commit changes to `package.json` + `lockdown.json`.
  
 

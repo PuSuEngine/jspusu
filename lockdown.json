@@ -9,6 +9,9 @@
     "1.2.2": "c8ce27de0acc76d896d2b1fad3df588d9e82f014",
     "2.7.0": "ab6e7d9d886aaca8b085bc3312b79a198433f0e7"
   },
+  "align-text": {
+    "0.1.4": "0cd90a561093f35d0a99256c22b7069433fad117"
+  },
   "ansi-regex": {
     "2.0.0": "c5061b6e0ef8a81775e50f5d66151bf6bf371107"
   },
@@ -47,6 +50,9 @@
   },
   "astw": {
     "2.0.0": "08121ac8288d35611c0ceec663f6cd545604897d"
+  },
+  "async": {
+    "0.2.10": "b6bbe0b0674b9d719708ca38de8c237cb526c3d1"
   },
   "balanced-match": {
     "0.4.1": "19053e2e0748eadb379da6c09d455cf5e1039335"
@@ -106,16 +112,23 @@
     "2.0.0": "6f22003baacf003ccd287afe6872151fddc58579"
   },
   "camelcase": {
+    "1.2.1": "9bb5304d2e0b56698b2c758b08a3eaa9daa58a39",
     "2.1.1": "7c1d16d679a1bbe59ca02cacecfb011e201f5a1f"
   },
   "camelcase-keys": {
     "2.1.0": "308beeaffdf28119051efa1d932213c91b8f92e7"
+  },
+  "center-align": {
+    "0.1.3": "aa0d32629b6ee972200411cbd4461c907bc2b7ad"
   },
   "chalk": {
     "1.1.3": "a8115c55e4a702fe4d150abd3872822a7e09fc98"
   },
   "cipher-base": {
     "1.0.2": "54ac1d1ebdf6a1bcd3559e6f369d72697f2cab8f"
+  },
+  "cliui": {
+    "2.1.0": "4b475760ff80264c762c3a1719032e91c7fea0d1"
   },
   "clone": {
     "0.2.0": "c6126a90ad4f72dbf5acdb243cc37724fe93fc1f",
@@ -143,8 +156,7 @@
     "1.0.0": "c20b96d8c617748aaf1c16021760cd27fcb8cb75"
   },
   "convert-source-map": {
-    "1.1.3": "4829c877e9fe49b3161f3bf3673888e204699860",
-    "1.2.0": "44c08c2506f10fb3ca6fd888d5a3444cf8d6a669"
+    "1.1.3": "4829c877e9fe49b3161f3bf3673888e204699860"
   },
   "core-util-is": {
     "1.0.2": "b5fd54220aa2bc5ab57aab7140c940754503c1a7"
@@ -166,6 +178,9 @@
   },
   "dateformat": {
     "1.0.12": "9f124b67594c937ff706932e4a642cca8dbbfee9"
+  },
+  "deap": {
+    "1.0.0": "b148bf82430a27699b7483a03eb6b67585bfc888"
   },
   "debuglog": {
     "1.0.1": "aa24ffb9ac3df9a2351837cfb2d279360cd78492"
@@ -286,6 +301,9 @@
   "gulp": {
     "3.9.1": "571ce45928dd40af6514fc4011866016c13845b4"
   },
+  "gulp-uglify": {
+    "1.5.3": "60a00b3975aba4186442a494979e9dfa3f13d0d6"
+  },
   "gulp-util": {
     "3.0.7": "78925c4b8f8b49005ac01a011c557e6218941cbb"
   },
@@ -360,6 +378,9 @@
     "0.0.1": "8a18acfca9a8f4177e09abfc6038939b05d1eedf",
     "1.0.0": "bb935d48582cba168c06834957a54a3e07124f11"
   },
+  "isobject": {
+    "2.1.0": "f065561096a3f1da2ef46272f815c840d87e0c89"
+  },
   "jju": {
     "1.3.0": "dadd9ef01924bc728b03f2f7979bdbd62f7a2aaa"
   },
@@ -375,8 +396,14 @@
   "jsonparse": {
     "1.2.0": "5c0c5685107160e72fe7489bddea0b44c2bc67bd"
   },
+  "kind-of": {
+    "3.0.3": "c61608747d815b0362556db3276362a7a38aded3"
+  },
   "labeled-stream-splicer": {
     "2.0.0": "a52e1d138024c00b86b1c0c91f677918b8ae0a59"
+  },
+  "lazy-cache": {
+    "1.0.4": "a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
   },
   "lexical-scope": {
     "1.2.0": "fcea5edc704a4b3a8796cdca419c3a0afaf22df4"
@@ -443,6 +470,9 @@
   },
   "lodash.templatesettings": {
     "3.1.1": "fb307844753b66b9f1afa54e262c745307dba8e5"
+  },
+  "longest": {
+    "1.0.1": "30a0b2da38f73770e8294a0d22e6625ed77d0097"
   },
   "loud-rejection": {
     "1.3.0": "f289a392f17d2baacf194d0a673004394433b115"
@@ -612,6 +642,9 @@
   "redent": {
     "1.0.0": "cf916ab1fd5f1f16dfb20822dd6ec7f730c2afde"
   },
+  "repeat-string": {
+    "1.5.4": "64ec0c91e0f4b475f90d5b643651e3e6e5b6c2d5"
+  },
   "repeating": {
     "2.0.1": "5214c53a926d3552707527fbab415dbc08d06dda"
   },
@@ -620,6 +653,9 @@
   },
   "resolve": {
     "1.1.7": "203114d82ad2c5ed9e8e0411b3932875e889e97b"
+  },
+  "right-align": {
+    "0.1.3": "61339b722fe6a3515689210d24e14c96148613ef"
   },
   "ripemd160": {
     "1.0.1": "93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
@@ -739,6 +775,15 @@
   "typescript": {
     "1.8.10": "b475d6e0dff0bf50f296e5ca6ef9fbb5c7320f1e"
   },
+  "uglify-js": {
+    "2.6.2": "f50be88a42cd396a6251dc52ab372f71cc12fef0"
+  },
+  "uglify-save-license": {
+    "0.4.1": "95726c17cc6fd171c3617e3bf4d8d82aa8c4cce1"
+  },
+  "uglify-to-browserify": {
+    "1.0.2": "6e0924d6bda6b5afe349e39a6d632850a0f882b7"
+  },
   "uid-number": {
     "0.0.5": "5a3db23ef5dbd55b81fce0ec9a2ac6fccdebb81e"
   },
@@ -779,13 +824,25 @@
   "vinyl-source-stream": {
     "1.1.0": "44cbe5108205279deb0c5653c094a2887938b1ab"
   },
+  "vinyl-sourcemaps-apply": {
+    "0.2.1": "ab6549d61d172c2b1b87be5c508d239c8ef87705"
+  },
   "vm-browserify": {
     "0.0.4": "5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
+  },
+  "window-size": {
+    "0.1.0": "5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
+  },
+  "wordwrap": {
+    "0.0.2": "b79669bb42ecb409f83d583cad52ca17eaa1643f"
   },
   "wrappy": {
     "1.0.1": "1e65969965ccbc2db4548c6b84a6f2c5aedd4739"
   },
   "xtend": {
     "4.0.1": "a5c6d532be656e23db820efb943a1f04998d63af"
+  },
+  "yargs": {
+    "3.10.0": "f7ee7bd857dd7c1d2d38c0e74efbd681d1431fd1"
   }
 }
