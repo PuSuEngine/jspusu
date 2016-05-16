@@ -17,10 +17,10 @@
     "messaging"
   ],
   "devDependencies": {
-    "browserify": "^13.0.0",
-    "gulp": "^3.9.1",
-    "tsify": "^0.15.2",
-    "vinyl-source-stream": "^1.1.0"
+    "browserify": "<=13.0.1",
+    "gulp": "<=3.9.1",
+    "tsify": "<=0.15.3",
+    "vinyl-source-stream": "<=1.1.0"
   },
   "author": "Janne Enberg aka. Lietu",
   "license": "MIT and new BSD"
