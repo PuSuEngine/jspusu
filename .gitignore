@@ -1,5 +1,4 @@
 node_modules
-dist/*.js
 dist/commonjs/*.js
 dist/commonjs/*.ts
 dist/commonjs/*.map
