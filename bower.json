@@ -24,8 +24,6 @@
     "bower_components",
     "test",
     "tests",
-    "dist/browser",
-    "dist/commonjs",
     "src",
     "generate_versions.js",
     "Gulpfile.js",
