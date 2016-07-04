@@ -4,6 +4,9 @@ This is a client for the PuSu Engine written in Go. PuSu Engine is a Pub-Sub eng
 
 More information on the server repository at [https://github.com/PuSuEngine/pusud](https://github.com/PuSuEngine/pusud).
 
+```
+bower install pusu
+```
 
 ## Usage
 
@@ -21,6 +24,8 @@ client.connect().promise.then(function () {
     });
 });
 ```
+
+
 
 ## Development
 
