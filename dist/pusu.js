@@ -195,7 +195,7 @@ var PuSu = (function () {
      * Connect to the PuSu network
      * @returns {DeferredInterface<void>}
      */
-    PuSu.prototype.connect = function () {
+    PuSu.prototype.connect = function (closeListener) {
         var deferred = tsd.create();
         if (this._socket) {
             this.disconnect();
@@ -203,6 +203,7 @@ var PuSu = (function () {
         if (DEBUG) {
             console.log("Connecting to " + this._server);
         }
+        this._closeListener = closeListener;
         this._socket = new WebSocket(this._server);
         this._socket.onclose = this._onclose.bind(this);
         this._socket.onmessage = this._onmessage.bind(this);
@@ -327,6 +328,9 @@ var PuSu = (function () {
         if (DEBUG) {
             console.log("Connection to " + this._server + " closed.");
             console.error(event);
+        }
+        if (this._closeListener) {
+            this._closeListener(event);
         }
     };
     /**

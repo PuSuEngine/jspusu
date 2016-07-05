@@ -1,6 +1,6 @@
 {
   "name": "pusu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "PuSu Engine client",
   "main": "dist/pusu.js",
   "scripts": {
@@ -22,11 +22,11 @@
     "gulp": "<=3.9.1",
     "gulp-uglify": "<=1.5.3",
     "tsify": "<=0.15.3",
-    "vinyl-source-stream": "<=1.1.0"
+    "vinyl-source-stream": "<=1.1.0",
+    "pump": "<=1.0.1",
+    "gulp-rename": "^1.2.2",
+    "lockdown": "0.0.6"
   },
   "author": "Janne Enberg aka. Lietu",
-  "license": "MIT and new BSD",
-  "dependencies": {
-    "lockdown": "0.0.6"
-  }
+  "license": "MIT and new BSD"
 }

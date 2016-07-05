@@ -20,6 +20,10 @@ interface Subscriber {
     (msg: Message): void;
 }
 
+interface CloseListener {
+    (event: Event): void;
+}
+
 interface Waiter {
     (type: string): void;
 }
@@ -87,6 +91,7 @@ export class PuSu {
     private _waiters: Waiter[] = [];
 
     private _subscribers: {[channel: string]: Subscriber[]} = {};
+    private _closeListener: CloseListener;
 
     /**
      * Create a new client instance
@@ -100,7 +105,7 @@ export class PuSu {
      * Connect to the PuSu network
      * @returns {DeferredInterface<void>}
      */
-    connect(): tsd.DeferredInterface<void> {
+    connect(closeListener: CloseListener): tsd.DeferredInterface<void> {
         let deferred = tsd.create<void>();
 
         if (this._socket) {
@@ -110,6 +115,8 @@ export class PuSu {
         if (DEBUG) {
             console.log(`Connecting to ${this._server}`);
         }
+
+        this._closeListener = closeListener;
 
         this._socket = new WebSocket(this._server);
         this._socket.onclose = this._onclose.bind(this);
@@ -258,6 +265,10 @@ export class PuSu {
         if (DEBUG) {
             console.log(`Connection to ${this._server} closed.`);
             console.error(event);
+        }
+
+        if (this._closeListener) {
+            this._closeListener(event)
         }
     }
 
