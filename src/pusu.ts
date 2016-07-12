@@ -217,12 +217,18 @@ export class PuSu {
         let _this = this;
         let waiter = function waiter(type: string) {
             if (eventType == type) {
+                var pos = _this._waiters.indexOf(waiter);
+                if (pos === -1) {
+                    // We're no longer supposed to wait for anything
+                    return;
+                }
+
+                _this._waiters.splice(pos, 1);
+
                 if (!done) {
                     done = true;
                     deferred.resolve()
                 }
-
-                _this._waiters.splice(_this._waiters.indexOf(waiter), 1);
             }
         };
 
@@ -231,9 +237,12 @@ export class PuSu {
         setTimeout(function () {
             let pos = _this._waiters.indexOf(waiter);
 
-            if (pos !== -1) {
-                _this._waiters.splice(pos, 1);
+            if (pos === -1) {
+                // We're not supposed to wait for anything
+                return;
             }
+
+            _this._waiters.splice(pos, 1);
 
             if (!done) {
                 done = true;
@@ -266,6 +275,9 @@ export class PuSu {
             console.log(`Connection to ${this._server} closed.`);
             console.error(event);
         }
+
+        this._waiters = [];
+        this._subscribers = {};
 
         if (this._closeListener) {
             this._closeListener(event)

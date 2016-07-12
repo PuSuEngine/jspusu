@@ -287,19 +287,26 @@ var PuSu = (function () {
         var _this = this;
         var waiter = function waiter(type) {
             if (eventType == type) {
+                var pos = _this._waiters.indexOf(waiter);
+                if (pos === -1) {
+                    // We're no longer supposed to wait for anything
+                    return;
+                }
+                _this._waiters.splice(pos, 1);
                 if (!done) {
                     done = true;
                     deferred.resolve();
                 }
-                _this._waiters.splice(_this._waiters.indexOf(waiter), 1);
             }
         };
         this._waiters.push(waiter);
         setTimeout(function () {
             var pos = _this._waiters.indexOf(waiter);
-            if (pos !== -1) {
-                _this._waiters.splice(pos, 1);
+            if (pos === -1) {
+                // We're not supposed to wait for anything
+                return;
             }
+            _this._waiters.splice(pos, 1);
             if (!done) {
                 done = true;
                 console.log("Timeout exceeded waiting for " + eventType);
@@ -329,6 +336,8 @@ var PuSu = (function () {
             console.log("Connection to " + this._server + " closed.");
             console.error(event);
         }
+        this._waiters = [];
+        this._subscribers = {};
         if (this._closeListener) {
             this._closeListener(event);
         }
