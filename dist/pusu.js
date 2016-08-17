@@ -170,6 +170,13 @@ var PuSu = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(PuSu, "TYPE_UNSUBSCRIBE", {
+        get: function () {
+            return "unsubscribe";
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(PuSu, "TYPE_UNKNOWN_MESSAGE_RECEIVED", {
         get: function () {
             return "unknown_message_received";
@@ -260,6 +267,23 @@ var PuSu = (function () {
             deferred.resolve();
         }
         return deferred;
+    };
+    /**
+     * Unsubscribe from messages on a channel.
+     * @param channel
+     */
+    PuSu.prototype.unsubscribe = function (channel) {
+        var exists = false;
+        if (this._subscribers[channel]) {
+            exists = true;
+            this._subscribers[channel] = [];
+        }
+        if (exists) {
+            this._socket.send(JSON.stringify({
+                type: PuSu.TYPE_UNSUBSCRIBE,
+                channel: channel
+            }));
+        }
     };
     /**
      * Publish a message to a channel

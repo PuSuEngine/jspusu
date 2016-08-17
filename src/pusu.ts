@@ -57,6 +57,10 @@ export class PuSu {
         return "subscribe_ok";
     }
 
+    public static get TYPE_UNSUBSCRIBE(): string {
+        return "unsubscribe";
+    }
+
     public static get TYPE_UNKNOWN_MESSAGE_RECEIVED(): string {
         return "unknown_message_received";
     }
@@ -186,6 +190,25 @@ export class PuSu {
         }
 
         return deferred;
+    }
+
+    /**
+     * Unsubscribe from messages on a channel.
+     * @param channel
+     */
+    unsubscribe(channel: string): void {
+        let exists = false;
+        if (this._subscribers[channel]) {
+            exists = true;
+            this._subscribers[channel] = [];
+        }
+
+        if (exists) {
+            this._socket.send(JSON.stringify({
+                type: PuSu.TYPE_UNSUBSCRIBE,
+                channel: channel
+            }));
+        }
     }
 
     /**
