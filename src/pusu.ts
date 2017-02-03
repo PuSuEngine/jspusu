@@ -172,7 +172,7 @@ export class PuSu {
         let deferred = tsd.create<void>();
         let exists = true;
 
-        if (!this._subscribers[channel]) {
+        if (!this._subscribers[channel] || this._subscribers[channel].length === 0) {
             this._subscribers[channel] = [];
             exists = false;
         }

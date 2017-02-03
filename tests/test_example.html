@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" src="../dist/pusu.min.js"></script>
+    <script type="text/javascript" src="../dist/pusu.js"></script>
 </head>
 <body>
 <section>
     <form>
         <label for="message">Message:</label> <input type="text" id="message"/>
         <button type="submit">Send</button>
-        <button id="unsub" type="button">Unsubscribe from <em>channel.2</em></button>
-        <div>Messages received on channel.1: <span class="counter">0</span>.</div>
-        <div>Messages received on channel.2: <span class="counter2">0</span>.</div>
+        <button id="unsub" type="button">Unsubscribe from <em>channel.2</em>
+        </button>
+        <button id="resub" type="button" disabled="disabled">Subscribe to <em>channel.2</em>
+        </button>
+        <div>Messages received on channel.1: <span class="counter">0</span>.
+        </div>
+        <div>Messages received on channel.2: <span class="counter2">0</span>.
+        </div>
         <div class="messages"></div>
     </form>
 </section>
@@ -33,6 +38,14 @@
     var client = new PuSu(SERVER);
     var connect = client.connect();
     console.log(connect);
+
+    function subscribe_channel2() {
+        client.subscribe(CHANNEL2, function (msg) {
+            console.dir(msg);
+            count2 += 1;
+        });
+    }
+
     connect.promise.then(function () {
         var authorize = client.authorize("foo");
         console.log(authorize);
@@ -43,10 +56,7 @@
                 count += 1;
             });
 
-            client.subscribe(CHANNEL2, function (msg) {
-                console.dir(msg);
-                count2 += 1;
-            });
+            subscribe_channel2();
         });
     });
 
@@ -65,10 +75,19 @@
     function unsub(event) {
         client.unsubscribe(CHANNEL2);
         document.querySelector("#unsub").disabled = true;
+        document.querySelector("#resub").disabled = false;
+        event.preventDefault();
+    }
+
+    function resub(event) {
+        subscribe_channel2();
+        document.querySelector("#unsub").disabled = false;
+        document.querySelector("#resub").disabled = true;
         event.preventDefault();
     }
 
     document.querySelector("#unsub").addEventListener("click", unsub);
+    document.querySelector("#resub").addEventListener("click", resub);
 
     setInterval(function () {
         messages.innerText = messages.textContent = messageContent;

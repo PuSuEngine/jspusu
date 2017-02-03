@@ -251,7 +251,7 @@ var PuSu = (function () {
     PuSu.prototype.subscribe = function (channel, listener) {
         var deferred = tsd.create();
         var exists = true;
-        if (!this._subscribers[channel]) {
+        if (!this._subscribers[channel] || this._subscribers[channel].length === 0) {
             this._subscribers[channel] = [];
             exists = false;
         }
