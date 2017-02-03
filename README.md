@@ -46,7 +46,14 @@ The project is using [npm-lockdown](https://github.com/mozilla/npm-lockdown) to 
 Basically if you update/add dependencies you should
 run `npm run relock` and
 commit changes to `package.json` + `lockdown.json`.
+
  
+# Publishing new versions
+
+(This doesn't happen often so it's easy to forget)
+
+1. Update new version number in package.json
+2. Commit a new tag pointing to the correct revision 
 
 
 ## License
