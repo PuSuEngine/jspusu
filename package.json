@@ -5,7 +5,7 @@
   "main": "dist/pusu.js",
   "scripts": {
     "relock": "lockdown-relock",
-    "preinstall": "lockdown"
+    "prepare": "lockdown"
   },
   "repository": {
     "type": "git",
